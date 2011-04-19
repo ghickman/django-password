@@ -10,7 +10,7 @@ setup(
     name='django-password',
     version=version,
     description="A Django application to store communal passwords.",
-    long_description=fread("README"),
+    long_description=fread("README.markdown"),
     classifiers=[
         "Framework :: Django",
         "Development Status :: 4 - Beta",
