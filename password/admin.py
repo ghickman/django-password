@@ -19,7 +19,7 @@ class PasswordAdmin(admin.ModelAdmin):
         qs = super(PasswordAdmin, self).queryset(request)
         if user.is_superuser:
             return qs
-        return qs.filter(Q(employee=user) | Q(is_public=True))
+        return qs.filter(Q(user=user) | Q(is_public=True))
 
 admin.site.register(Password, PasswordAdmin)
 
