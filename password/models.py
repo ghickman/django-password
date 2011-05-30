@@ -16,8 +16,9 @@ class Password(models.Model):
         ordering = ('name',)
 
     def save(self, *args, **kwargs):
-        if not self.domain.startswith('http://') and not self.domain.startswith('https://'):
-            self.domain = 'http://' + self.domain
+        if self.domain:
+            if not self.domain.startswith('http://') and not self.domain.startswith('https://'):
+                self.domain = 'http://' + self.domain
         super(Password, self).save(*args, **kwargs)
 
     def __unicode__(self):
