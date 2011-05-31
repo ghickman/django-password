@@ -23,7 +23,7 @@ class Password(models.Model):
 
     def __unicode__(self):
         if self.domain:
-            return '%s (%s):' % (self.name, self.domain)
+            return '%s (%s)' % (self.name, self.domain)
         return self.name
 
     @property
