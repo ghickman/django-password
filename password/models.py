@@ -22,8 +22,6 @@ class Password(models.Model):
         super(Password, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        if self.domain:
-            return '%s (%s):' % (self.name, self.domain)
         return self.name
 
     @property
