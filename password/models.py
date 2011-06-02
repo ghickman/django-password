@@ -1,16 +1,15 @@
 from base64 import b64decode
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, User
 from django.db import models
-
 
 class Password(models.Model):
     name = models.CharField(max_length=255)
     username = models.CharField(max_length=255, null=True, blank=True)
     domain = models.CharField(max_length=255, null=True, blank=True)
     passwd = models.CharField(max_length=255)
-    is_public = models.BooleanField('Public?')
     user = models.ForeignKey(User, related_name='incunapassword_employee_related')
+    group = models.ManyToManyField(Group, help_text='Deselect all groups to make password private.')
 
     class Meta:
         ordering = ('name',)
@@ -27,4 +26,15 @@ class Password(models.Model):
     @property
     def password(self):
         return b64decode(self.passwd)
+
+    # used in the admin
+    @property
+    def Public(obj):
+        if obj.group.count() > 0:
+            #return False
+            return 'No'
+        else:
+            #return True
+            return 'Yes'
+    #is_public.short_description = 'Public?'
 
