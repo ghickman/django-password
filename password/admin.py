@@ -6,7 +6,8 @@ from models import Password
 
 class PasswordAdmin(admin.ModelAdmin):
     form = PasswordForm
-    list_display = ('__unicode__', 'domain', 'is_public')
+    list_display = ('__unicode__', 'domain', 'Public')
+    list_filter = ('group',)
     search_fields = ['name', 'username', 'domain']
 
     def get_form(self, request, obj=None, **kwargs):
