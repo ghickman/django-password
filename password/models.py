@@ -27,14 +27,11 @@ class Password(models.Model):
     def password(self):
         return b64decode(self.passwd)
 
-    # used in the admin
-    @property
-    def Public(obj):
+    def is_public(obj):
         if obj.group.count() > 0:
-            #return False
-            return 'No'
+            return True
         else:
-            #return True
-            return 'Yes'
-    #is_public.short_description = 'Public?'
+            return False
+    is_public.short_description = 'Public?'
+    is_public.boolean = True
 
