@@ -8,7 +8,7 @@ class Password(models.Model):
     username = models.CharField(max_length=255, null=True, blank=True)
     domain = models.CharField(max_length=255, null=True, blank=True)
     passwd = models.CharField(max_length=255)
-    user = models.ForeignKey(User, related_name='incunapassword_employee_related')
+    user = models.ForeignKey(User, related_name='user_related')
     group = models.ManyToManyField(Group, blank=True, help_text='Deselect all groups to make password private.')
 
     class Meta:
