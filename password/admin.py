@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from django.db.models import Q
 
 from forms import PasswordForm
@@ -20,7 +21,7 @@ class PasswordAdmin(admin.ModelAdmin):
         qs = super(PasswordAdmin, self).queryset(request)
         if user.is_superuser:
             return qs
-        return qs.filter(Q(user=user) | Q(is_public=True))
+        return qs.filter(Q(user=user) | Q(group=Group.objects.filter(user=user))).distinct()
 
 admin.site.register(Password, PasswordAdmin)
 
