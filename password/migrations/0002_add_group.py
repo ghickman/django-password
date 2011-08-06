@@ -16,7 +16,7 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('password_password_group', ['password_id', 'group_id'])
         for password in orm.Password.objects.filter(is_public=True):
-            for group in orm.Group.objects.all():
+            for group in orm['auth.Group'].objects.all():
                 password.group.add(group)
                 password.save()
 
