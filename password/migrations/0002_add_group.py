@@ -15,13 +15,20 @@ class Migration(SchemaMigration):
             ('group', models.ForeignKey(orm['auth.group'], null=False))
         ))
         db.create_unique('password_password_group', ['password_id', 'group_id'])
-
+        for password in orm.Password.objects.filter(is_public=True):
+            for group in orm.Group.objects.all():
+                password.group.add(group)
+                password.save()
 
     def backwards(self, orm):
         
         # Removing M2M table for field group on 'Password'
         db.delete_table('password_password_group')
-
+        for password in orm.Password.objects.all():
+            password.is_public = True
+            if len(password.groups) == 0:
+                password.is_public = False
+            password.save()
 
     models = {
         'auth.group': {
