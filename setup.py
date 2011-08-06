@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 def fread(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-version = '1.0'
+version = '2.0'
 
 setup(
     name='django-password',
