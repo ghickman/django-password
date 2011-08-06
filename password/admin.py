@@ -31,6 +31,11 @@ class UserGroupsFilterSpec(RelatedFilterSpec):
         yield { 'selected': self.lookup_val is None,
                 'query_string': cl.get_query_string({}, [self.lookup_kwarg]),
                 'display': _('All') }
+        # created by the user with no groups
+        #print self.lookup_val
+        #yield { 'selected': self.lookup_val is None,
+                #'query_string': cl.get_query_string({}, [self.lookup_kwarg]),
+                #'display': _('Private') }
         for pk_val, val in self.lookup_choices:
             yield { 'selected' : self.lookup_val == smart_unicode(pk_val),
                     'query_string': cl.get_query_string({self.lookup_kwarg: pk_val}),
