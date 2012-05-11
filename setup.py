@@ -34,8 +34,5 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    install_requires=[
-        'django',
-        'south'
-    ],
+    install_requires=('django', 'django_simple_aes_field', 'south'),
 )
