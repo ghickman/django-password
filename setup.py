@@ -1,8 +1,5 @@
-import os
 from setuptools import setup, find_packages
 
-def fread(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 version = '2.0'
 
@@ -10,7 +7,7 @@ setup(
     name='django-password',
     version=version,
     description="A Django application to store communal passwords.",
-    long_description=fread("README.markdown"),
+    long_description=open('README.markdown').read(),
     classifiers=[
         "Framework :: Django",
         "Development Status :: 4 - Beta",
